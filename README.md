@@ -12,7 +12,7 @@ Este projeto consiste em uma API RESTful desenvolvida em **Java** com **Spring B
 - Transações atômicas para garantir a consistência dos dados durante os intercâmbios.
 - Geração de relatórios consolidados sobre Centros Comunitarios e Recursos.
 
-### Tecnologias e Padrões Utilizados
+## Tecnologias e Padrões Utilizados
 - **Linguagem:** [Java 21](https://www.oracle.com/java/)
 - **Framework:** [Spring Boot 3](https://spring.io/projects/spring-boot)
 - **Banco de Dados:** [MongoDB](https://www.mongodb.com/)
@@ -41,12 +41,19 @@ Este projeto consiste em uma API RESTful desenvolvida em **Java** com **Spring B
       </pre>
 
   
+## Testes e Qualidade de Código
+
+O projeto inclui uma suíte de testes unitários para garantir a qualidade e assegurar que as regras de negócio funcionem conforme o esperado.
+
+- **Ferramentas**: Os testes foram desenvolvidos com **JUnit 5** e **Mockito**, já presentes na dependencia `spring-boot-starter-test`.
+- **Escopo**: O foco dos testes está na camada de Serviço, especialmente no IntercambioService, que contém a lógica mais complexa do sistema (cálculo de pontos, validação de estoque e a regra de exceção para centros superlotados). Os testes validam tanto os cenários de sucesso quanto os de falha esperada.
+
 ## Instruções para Executar o Projeto
 
 ### 1. Pré-requisitos
-- [Java 21](https://www.oracle.com/java/technologies/downloads/)
-- [Apache Maven](https://maven.apache.org/download.cgi)
-- [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/) instalados
+- Java 21
+- Apache Maven
+- Docker e Docker Compose instalados
 - Uma IDE de sua preferência (IntelliJ, VSCode, Eclipse), nesse projeto estou utilizando IntelliJ
 - Um cliente de API como [Insomnia](https://insomnia.rest/) ou [Postman](https://www.postman.com/)
 
@@ -201,5 +208,5 @@ Parâmetros de Consulta:
 - `desde` (data, opcional): Filtra as negociações a partir da data informada (formato: AAAA-MM-DD).
 
 ```bash
-curl --location --request GET 'http://localhost:8080/api/v1/relatorios/historico-intercambios?centroId=SEU_ID_AQUI&desde=2025-07-01'
+curl --location --request GET 'http://localhost:8080/api/v1/relatorios/historico-intercambios?centroId=ID_DO_CENTRO&desde=2025-07-01'
 ```

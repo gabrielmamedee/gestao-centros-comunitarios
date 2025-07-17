@@ -50,7 +50,6 @@ public class CentroComunitarioService {
         centro.setOcupacaoAtual(novaOcupacao);
         centro.calcularPercentualOcupacao();
 
-        // Validação para desparo de notificação de ocupação do centro comunitario
         if (centro.getPercentualOcupacao() >= 100.0) {
             System.out.println("ALERTA: Centro " + centro.getNome() + " atingiu 100% da capacidade!");
         }
