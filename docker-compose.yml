@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: phoebus
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - mongo-network
+    command: >
+      bash -c "
+      mongod --fork --logpath /var/log/mongodb.log;
+      mongo phoebus --eval 'db.createUser({user: \"admin\", pwd: \"admin\", roles: [{role: \"readWrite\", db: \"phoebus\"}]})';
+      mongod --shutdown;
+      mongod --bind_ip_all
+      "
+
+volumes:
+  mongo-data:
+
+networks:
+  mongo-network:
